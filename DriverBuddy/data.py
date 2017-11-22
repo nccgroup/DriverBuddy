@@ -226,9 +226,9 @@ is_driver: Checks to determine that file loaded in IDA is actually a
 
 def is_driver():
     driver_entry_address=""
-    print "[+] Checking if driver is loaded..."
-    # Iterate through exports section
-    for index, ordinal, ea, name in Entries():
-        if name == "DriverEntry":
-            driver_entry_address = ea
-    return driver_entry_address
+    print "[+] Checking for DriverEntry..."
+    for ea in Segments():
+        for funcea in Functions(SegStart(ea),SegEnd(ea)):
+            fn = GetFunctionName(funcea)
+            if fn == "DriverEntry":
+                return funcea
