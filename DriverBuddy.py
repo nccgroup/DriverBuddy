@@ -23,7 +23,7 @@ class DriverBuddyPlugin(plugin_t):
 
     def init(self):
         self.hotkeys = []
-        self.hotkeys.append(idaapi.add_hotkey("Ctrl+Alt+I", self.decode))
+        self.hotkeys.append(add_hotkey("Ctrl+Alt+I", self.decode))
         return PLUGIN_KEEP
 
     def run(self, args):
